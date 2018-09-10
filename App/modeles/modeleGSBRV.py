@@ -252,7 +252,7 @@ def enregistrerEchantillonsOfferts( matricule , numRapport , echantillons ) :
 			
 		nbOffresInserees = 0
 		for offre in echantillons.items() :
-			curseur.execute( requete, ( matricule , numRapportVisite , offre[ 0 ] , offre[ 1 ]) )
+			curseur.execute( requete, ( matricule , numRapport , offre[ 0 ] , offre[ 1 ]) )
 			nbOffresInserees += curseur.rowcount
 			
 		connexionBD.commit()
