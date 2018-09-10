@@ -240,7 +240,7 @@ def enregistrerRapportVisite( matricule , numPraticien , dateVisite , bilan ) :
 		return None
 		
 		
-def enregistrerEchantillonsOfferts( matricule , numRapportVisite , echantillons ) :
+def enregistrerEchantillonsOfferts( matricule , numRapport , echantillons ) :
 	
 	try:
 		curseur = getConnexionBD().cursor()

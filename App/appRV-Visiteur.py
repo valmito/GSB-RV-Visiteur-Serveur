@@ -100,12 +100,10 @@ def addRapportVisite() :
 	return reponse
 	
 
-@app.route( '/rapports/echantillons' , methods = [ 'POST' ] )
-def addEchantillonsOfferts() :
-	rapportEchantillons = json.loads( request.data )
-	nbEchantillons = modeleGSBRV.enregistrerEchantillonsOfferts( rapportEchantillons[ 'matricule' ] ,
-																	rapportEchantillons[ 'numero' ] , 
-																	rapportEchantillons[ 'echantillons' )
+@app.route( '/rapports/echantillons/<matricule>/<numRapport>' , methods = [ 'POST' ] )
+def addEchantillonsOfferts( matricule , numRapport ) :
+	echantillons = json.loads( request.data )
+	nbEchantillons = modeleGSBRV.enregistrerEchantillonsOfferts( matricule , numRapport , echantillons )
 	
 	
 	reponse = make_response( '' )												
