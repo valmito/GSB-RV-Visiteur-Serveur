@@ -598,6 +598,9 @@ CREATE TABLE Offrir (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+INSERT INTO Offrir VALUES
+	( 'a131' , 1 , 'EVILR7' , 2 ) ,
+	( 'a131' , 1 , 'PHYSOI8' , 5 ) ;
 
 
 
