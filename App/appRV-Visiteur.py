@@ -108,7 +108,7 @@ def addEchantillonsOfferts( matricule , numRapport ) :
 	
 	reponse = make_response( '' )												
 	if numRapport != None :
-		reponse.headers[ 'Location' ] = '/rapports/echantillons/%s/%d' % ( unRapport[ 'matricule' ] , unRapport[ 'numero' ] )
+		reponse.headers[ 'Location' ] = '/rapports/echantillons/%s/%s' % ( matricule , numRapport ] )
 		reponse.status_code = 201
 	else :
 		reponse.status_code = 409
