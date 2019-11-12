@@ -185,7 +185,30 @@ def getMedicaments() :
 	except :
 		return None
 
-
+def getMotifs() :
+	try :
+		curseur = getConnexionBD().cursor()
+		requete = '''
+					select mot_id , mot_libelle , mot_precision
+					from Motif
+				'''
+		
+		curseur.execute( requete , () )
+		
+		enregistrements = curseur.fetchall()
+		
+		motifs = []
+		for unEnregistrement in enregistrements :
+			unMotif = {}
+			unMotif[ 'mot_id' ] = unEnregistrement[ 0 ]
+			unMotif[ 'mot_libelle' ] = unEnregistrement[ 1 ]
+			unMotif[ 'mot_precision' ] = unEnregistrement[ 2 ]
+			motifs.append( unMotif )
+			
+		curseur.close()
+		return motifs
+	except :
+		return None
 	
 
 def genererNumeroRapportVisite( matricule ) :
@@ -213,13 +236,11 @@ def genererNumeroRapportVisite( matricule ) :
 	except :
 		return None
 
-
 def enregistrerRapportVisite( matricule , numPraticien , dateVisite , bilan ) :
 	
 	numRapportVisite = genererNumeroRapportVisite( matricule )
-	
 	if numRapportVisite != None :
-	
+		
 		try:
 			curseur = getConnexionBD().cursor()
 
