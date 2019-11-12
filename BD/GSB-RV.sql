@@ -278,15 +278,18 @@ CREATE TABLE RapportVisite (
   rap_date_visite date NOT NULL,
   rap_bilan varchar(510) DEFAULT '',
   pra_num int(11) DEFAULT NULL,
+  rap_date_saisir date DEFAULT NULL,
+  rap_coef_confiance int(11) DEFAULT NULL,
+  mot_id varchar(10) DEFAULT NULL,
   PRIMARY KEY (vis_matricule,rap_num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO RapportVisite VALUES
-	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ) ,
-	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ) ,
-	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ) ,
-	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ) ,
-	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ) ;
+	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ,NULL,NULL,NULL) ,
+	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ,NULL,NULL,NULL) ,
+	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ,NULL,NULL,NULL) ,
+	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ,NULL,NULL,NULL) ,
+	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ,NULL,NULL,NULL) ;
 
 
 CREATE TABLE Realiser (
@@ -516,77 +519,78 @@ CREATE TABLE Visiteur (
   vis_dateembauche date DEFAULT NULL,
   sec_code varchar(2) DEFAULT NULL,
   lab_code varchar(4) DEFAULT NULL,
+  vis_mdp varchar(50) NOT NULL  DEFAULT'',
   PRIMARY KEY (vis_matricule)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO Visiteur VALUES 
-	('a131','Villechalane','Louis','8 cours Lafontaine','29000','BREST','2012-11-08',NULL,'SW'),
-	('a17','Andre','David','1 rue Aimon de Chissee','38100','GRENOBLE','2008-06-19',NULL,'GY'),
-	('a55','Bedos','Christian','1 rue Bénédictins','65000','TARBES','2007-09-07',NULL,'GY'),
-	('a93','Tusseau','Louis','22 rue Renou','86000','POITIERS','2001-02-09',NULL,'SW'),
-	('b13','Bentot','Pascal','11 avenue 6 Juin','67000','STRASBOURG','2003-11-06',NULL,'GY'),
-	('b16','Bioret','Luc','1 rue Linne','35000','RENNES','2003-01-06',NULL,'SW'),
-	('b19','Bunisset','Francis','10 rue Nicolas Chorier','85000','LA ROCHE SUR YON','2013-09-23',NULL,'GY'),
-	('b25','Bunisset','Denise','1 rue Lionne','49100','ANGERS','2007-03-04',NULL,'SW'),
-	('b28','Cacheux','Bernard','114 rue Authie','34000','MONTPELLIER','2008-02-10',NULL,'GY'),
-	('b34','Cadic','Eric','123 rue Caponière','41000','BLOIS','2012-06-03','P','SW'),
-	('b4','Charoze','Catherine','100 place Géants','33000','BORDEAUX','2009-05-07',NULL,'SW'),
-	('b50','Clepkens','Christophe','12 rue Fédérico Garcia Lorca','13000','MARSEILLE','2011-08-18',NULL,'SW'),
-	('b59','Cottin','Vincenne','36 square Capucins','5000','GAP','2010-12-19',NULL,'GY'),
-	('c14','Daburon','François','13 rue Champs Elysées','6000','NICE','2012-01-20','S','SW'),
-	('c3','De','Philippe','13 rue Charles Peguy','10000','TROYES','2005-05-29',NULL,'SW'),
-	('c54','Debelle','Michel','181 rue Caponière','88000','EPINAL','2004-09-19',NULL,'SW'),
-	('d13','Debelle','Jeanne','134 rue Stalingrad','44000','NANTES','2012-05-25',NULL,'SW'),
-	('d51','Debroise','Michel','2 avenue 6 Juin','70000','VESOUL','2011-08-17','E','GY'),
-	('e22','Desmarquest','Nathalie','14 rue Fédérico Garcia Lorca','54000','NANCY','2013-04-18',NULL,'GY'),
-	('e24','Desnost','Pierre','16 rue Barral de Montferrat','55000','VERDUN','2013-04-18','E','SW'),
-	('e39','Dudouit','Frédéric','18 quai Xavier Jouvin','75000','PARIS','2013-04-18',NULL,'GY'),
-	('e49','Duncombe','Claude','19 avenue Alsace Lorraine','9000','FOIX','2012-09-16',NULL,'GY'),
-	('e5','Enault-Pascreau','Céline','25B rue Stalingrad','40000','MONT DE MARSAN','2012-09-16','S','GY'),
-	('e52','Eynde','Valérie','3 rue Henri Moissan','76000','ROUEN','2012-09-16',NULL,'GY'),
-	('f21','Finck','Jacques','route Montreuil Bellay','74000','ANNECY','2012-09-16',NULL,'SW'),
-	('f39','Frémont','Fernande','4 rue Jean Giono','69000','LYON','2005-05-29',NULL,'GY'),
-	('f4','Gest','Alain','30 rue Authie','46000','FIGEAC','2005-05-29',NULL,'GY'),
-	('g19','Gheysen','Galassus','32 boulevard Mar Foch','75000','PARIS','2005-05-29',NULL,'SW'),
-	('g30','Girard','Yvon','31 avenue du 6 Juin','80000','AMIENS','2012-05-25','N','GY'),
-	('g53','Gombert','Luc','32 rue Emile Gueymard','56000','VANNES','2012-05-25',NULL,'GY'),
-	('g7','Guindon','Caroline','40 rue Mar Montgomery','87000','LIMOGES','2012-05-25',NULL,'GY'),
-	('h13','Guindon','François','44 rue Picotière','19000','TULLE','2012-05-25',NULL,'SW'),
-	('h30','Igigabel','Guy','33 rue Arlequin','94000','CRETEIL','2008-06-19',NULL,'SW'),
-	('h35','Jourdren','Pierre','34 avenue Jean Perrot','15000','AURRILLAC','2008-06-19',NULL,'GY'),
-	('h40','Juttard','Pierre-Raoul','34 cours Jean Jaurès','8000','SEDAN','2008-06-19',NULL,'GY'),
-	('j45','Euré-Morel','Saout','38 cours Berriat','52000','CHAUMONT','2008-06-19','N','SW'),
-	('j50','Landré','Philippe','4 avenue du Général Laperrine','59000','LILLE','2000-05-01',NULL,'GY'),
-	('j8','Langeard','Hugues','39 avenue Jean Perrot','93000','BAGNOLET','2000-05-01','P','GY'),
-	('k4','Lanne','Bernard','4 rue Bayeux','30000','NIMES','2000-05-01',NULL,'SW'),
-	('k53','Le','Noël','4 avenue Beauvert','68000','MULHOUSE','2000-05-01',NULL,'SW'),
-	('l14','Le','Jean','39 rue Raspail','53000','LAVAL','2000-05-01',NULL,'SW'),
-	('l23','Leclercq','Servane','11 rue Quinconce','18000','BOURGES','1998-11-23',NULL,'SW'),
-	('l46','Lecornu','Jean-Bernard','4 boulevard du Maréchal Foch','72000','LA FERTE BERNARD','1998-11-23',NULL,'GY'),
-	('l56','Lecornu','Ludovic','4 rue Abel Servien','25000','BESANCON','1998-11-23',NULL,'SW'),
-	('m35','Lejard','Agnès','4 rue Anthoard','82000','MONTAUBAN','1998-11-23',NULL,'SW'),
-	('m45','Lesaulnier','Pascal','47 rue Thiers','57000','METZ','1998-11-23',NULL,'SW'),
-	('n42','Letessier','Stéphane','5 chemin de Capuche','27000','EVREUX','1998-11-23',NULL,'GY'),
-	('n58','Loirat','Didier','12 avenue Bourg la Croix','45000','ORLEANS','1998-11-23',NULL,'GY'),
-	('n59','Maffezzoli','Thibaud','5 rue Chateaubriand','2000','LAON','2005-12-21',NULL,'SW'),
-	('o26','Mancini','Anne','5 rue D\'\'Agier','48000','MENDE','2005-12-21',NULL,'GY'),
-	('p32','Marcouiller','Gérard','7 place St Gilles','91000','ISSY LES MOULINEAUX','2005-12-21',NULL,'GY'),
-	('p40','Michel','Jean-Claude','5 rue Gabriel Péri','61000','FLERS','2005-12-21','O','SW'),
-	('p41','Montecot','Françoise','6 rue Paul Valéry','17000','SAINTES','2005-12-21',NULL,'GY'),
-	('p42','Notini','Veronique','5 rue du Lieutenant Chabal','60000','BEAUVAIS','2005-12-21',NULL,'SW'),
-	('p49','Onfroy','Den','5 rue Sidonie Jacolin','37000','TOURS','2005-12-21',NULL,'GY'),
-	('p6','Pascreau','Charles','57 boulevard Mar Foch','64000','PAU','1997-03-30',NULL,'SW'),
-	('p7','Pernot','Claude-Noël','6 rue Alexandre 1 de Yougoslavie','11000','NARBONNE','2003-01-02',NULL,'SW'),
-	('p8','Perrier','Maître','6 rue Aubert Dubayet','71000','CHALON SUR SAONE','2006-06-23',NULL,'GY'),
-	('q17','Petit','Jean-Louis','7 rue Ernest Renan','50000','SAINT LO','2009-06-07',NULL,'GY'),
-	('r24','Piquery','Patrick','9 rue Vaucelles','14000','CAEN','2007-04-29','O','GY'),
-	('r58','Quiquandon','Joëll','7 rue Ernest Renan','29000','QUIMPER','2006-09-30',NULL,'GY'),
-	('s10','Retailleau','Josselin','88 bis rue Saumuroise','39000','DOLE','2011-12-05',NULL,'SW'),
-	('s21','Retailleau','Pascal','32 boulevard Ayrault','23000','MONTLUCON','2009-05-09',NULL,'SW'),
-	('t43','Souron','Maryse','7B rue Gay Lussac','21000','DIJON','2003-09-03',NULL,'SW'),
-	('t47','Tiphagne','Patrick','7B rue Gay Lussac','62000','ARRAS','1997-08-29',NULL,'SW'),
-	('t55','Tréhet','Alain','7D chemin Barral','12000','RODEZ','1994-11-29',NULL,'SW'),
-	('t60','Tusseau','Josselin','63 rue Bon Repos','28000','CHARTRES','1991-03-29',NULL,'GY');
+	('a131','Villechalane','Louis','8 cours Lafontaine','29000','BREST','2012-11-08',NULL,'SW','azerty'),
+	('a17','Andre','David','1 rue Aimon de Chissee','38100','GRENOBLE','2008-06-19',NULL,'GY','azerty'),
+	('a55','Bedos','Christian','1 rue Bénédictins','65000','TARBES','2007-09-07',NULL,'GY','azerty'),
+	('a93','Tusseau','Louis','22 rue Renou','86000','POITIERS','2001-02-09',NULL,'SW','azerty'),
+	('b13','Bentot','Pascal','11 avenue 6 Juin','67000','STRASBOURG','2003-11-06',NULL,'GY','azerty'),
+	('b16','Bioret','Luc','1 rue Linne','35000','RENNES','2003-01-06',NULL,'SW','azerty'),
+	('b19','Bunisset','Francis','10 rue Nicolas Chorier','85000','LA ROCHE SUR YON','2013-09-23',NULL,'GY','azerty'),
+	('b25','Bunisset','Denise','1 rue Lionne','49100','ANGERS','2007-03-04',NULL,'SW','azerty'),
+	('b28','Cacheux','Bernard','114 rue Authie','34000','MONTPELLIER','2008-02-10',NULL,'GY','azerty'),
+	('b34','Cadic','Eric','123 rue Caponière','41000','BLOIS','2012-06-03','P','SW','azerty'),
+	('b4','Charoze','Catherine','100 place Géants','33000','BORDEAUX','2009-05-07',NULL,'SW','azerty'),
+	('b50','Clepkens','Christophe','12 rue Fédérico Garcia Lorca','13000','MARSEILLE','2011-08-18',NULL,'SW','azerty'),
+	('b59','Cottin','Vincenne','36 square Capucins','5000','GAP','2010-12-19',NULL,'GY','azerty'),
+	('c14','Daburon','François','13 rue Champs Elysées','6000','NICE','2012-01-20','S','SW','azerty'),
+	('c3','De','Philippe','13 rue Charles Peguy','10000','TROYES','2005-05-29',NULL,'SW','azerty'),
+	('c54','Debelle','Michel','181 rue Caponière','88000','EPINAL','2004-09-19',NULL,'SW','azerty'),
+	('d13','Debelle','Jeanne','134 rue Stalingrad','44000','NANTES','2012-05-25',NULL,'SW','azerty'),
+	('d51','Debroise','Michel','2 avenue 6 Juin','70000','VESOUL','2011-08-17','E','GY','azerty'),
+	('e22','Desmarquest','Nathalie','14 rue Fédérico Garcia Lorca','54000','NANCY','2013-04-18',NULL,'GY','azerty'),
+	('e24','Desnost','Pierre','16 rue Barral de Montferrat','55000','VERDUN','2013-04-18','E','SW','azerty'),
+	('e39','Dudouit','Frédéric','18 quai Xavier Jouvin','75000','PARIS','2013-04-18',NULL,'GY','azerty'),
+	('e49','Duncombe','Claude','19 avenue Alsace Lorraine','9000','FOIX','2012-09-16',NULL,'GY','azerty'),
+	('e5','Enault-Pascreau','Céline','25B rue Stalingrad','40000','MONT DE MARSAN','2012-09-16','S','GY','azerty'),
+	('e52','Eynde','Valérie','3 rue Henri Moissan','76000','ROUEN','2012-09-16',NULL,'GY','azerty'),
+	('f21','Finck','Jacques','route Montreuil Bellay','74000','ANNECY','2012-09-16',NULL,'SW','azerty'),
+	('f39','Frémont','Fernande','4 rue Jean Giono','69000','LYON','2005-05-29',NULL,'GY','azerty'),
+	('f4','Gest','Alain','30 rue Authie','46000','FIGEAC','2005-05-29',NULL,'GY','azerty'),
+	('g19','Gheysen','Galassus','32 boulevard Mar Foch','75000','PARIS','2005-05-29',NULL,'SW','azerty'),
+	('g30','Girard','Yvon','31 avenue du 6 Juin','80000','AMIENS','2012-05-25','N','GY','azerty'),
+	('g53','Gombert','Luc','32 rue Emile Gueymard','56000','VANNES','2012-05-25',NULL,'GY','azerty'),
+	('g7','Guindon','Caroline','40 rue Mar Montgomery','87000','LIMOGES','2012-05-25',NULL,'GY','azerty'),
+	('h13','Guindon','François','44 rue Picotière','19000','TULLE','2012-05-25',NULL,'SW','azerty'),
+	('h30','Igigabel','Guy','33 rue Arlequin','94000','CRETEIL','2008-06-19',NULL,'SW','azerty'),
+	('h35','Jourdren','Pierre','34 avenue Jean Perrot','15000','AURRILLAC','2008-06-19',NULL,'GY','azerty'),
+	('h40','Juttard','Pierre-Raoul','34 cours Jean Jaurès','8000','SEDAN','2008-06-19',NULL,'GY','azerty'),
+	('j45','Euré-Morel','Saout','38 cours Berriat','52000','CHAUMONT','2008-06-19','N','SW','azerty'),
+	('j50','Landré','Philippe','4 avenue du Général Laperrine','59000','LILLE','2000-05-01',NULL,'GY','azerty'),
+	('j8','Langeard','Hugues','39 avenue Jean Perrot','93000','BAGNOLET','2000-05-01','P','GY','azerty'),
+	('k4','Lanne','Bernard','4 rue Bayeux','30000','NIMES','2000-05-01',NULL,'SW','azerty'),
+	('k53','Le','Noël','4 avenue Beauvert','68000','MULHOUSE','2000-05-01',NULL,'SW','azerty'),
+	('l14','Le','Jean','39 rue Raspail','53000','LAVAL','2000-05-01',NULL,'SW','azerty'),
+	('l23','Leclercq','Servane','11 rue Quinconce','18000','BOURGES','1998-11-23',NULL,'SW','azerty'),
+	('l46','Lecornu','Jean-Bernard','4 boulevard du Maréchal Foch','72000','LA FERTE BERNARD','1998-11-23',NULL,'GY','azerty'),
+	('l56','Lecornu','Ludovic','4 rue Abel Servien','25000','BESANCON','1998-11-23',NULL,'SW','azerty'),
+	('m35','Lejard','Agnès','4 rue Anthoard','82000','MONTAUBAN','1998-11-23',NULL,'SW','azerty'),
+	('m45','Lesaulnier','Pascal','47 rue Thiers','57000','METZ','1998-11-23',NULL,'SW','azerty'),
+	('n42','Letessier','Stéphane','5 chemin de Capuche','27000','EVREUX','1998-11-23',NULL,'GY','azerty'),
+	('n58','Loirat','Didier','12 avenue Bourg la Croix','45000','ORLEANS','1998-11-23',NULL,'GY','azerty'),
+	('n59','Maffezzoli','Thibaud','5 rue Chateaubriand','2000','LAON','2005-12-21',NULL,'SW','azerty'),
+	('o26','Mancini','Anne','5 rue D\'\'Agier','48000','MENDE','2005-12-21',NULL,'GY','azerty'),
+	('p32','Marcouiller','Gérard','7 place St Gilles','91000','ISSY LES MOULINEAUX','2005-12-21',NULL,'GY','azerty'),
+	('p40','Michel','Jean-Claude','5 rue Gabriel Péri','61000','FLERS','2005-12-21','O','SW','azerty'),
+	('p41','Montecot','Françoise','6 rue Paul Valéry','17000','SAINTES','2005-12-21',NULL,'GY','azerty'),
+	('p42','Notini','Veronique','5 rue du Lieutenant Chabal','60000','BEAUVAIS','2005-12-21',NULL,'SW','azerty'),
+	('p49','Onfroy','Den','5 rue Sidonie Jacolin','37000','TOURS','2005-12-21',NULL,'GY','azerty'),
+	('p6','Pascreau','Charles','57 boulevard Mar Foch','64000','PAU','1997-03-30',NULL,'SW','azerty'),
+	('p7','Pernot','Claude-Noël','6 rue Alexandre 1 de Yougoslavie','11000','NARBONNE','2003-01-02',NULL,'SW','azerty'),
+	('p8','Perrier','Maître','6 rue Aubert Dubayet','71000','CHALON SUR SAONE','2006-06-23',NULL,'GY','azerty'),
+	('q17','Petit','Jean-Louis','7 rue Ernest Renan','50000','SAINT LO','2009-06-07',NULL,'GY','azerty'),
+	('r24','Piquery','Patrick','9 rue Vaucelles','14000','CAEN','2007-04-29','O','GY','azerty'),
+	('r58','Quiquandon','Joëll','7 rue Ernest Renan','29000','QUIMPER','2006-09-30',NULL,'GY','azerty'),
+	('s10','Retailleau','Josselin','88 bis rue Saumuroise','39000','DOLE','2011-12-05',NULL,'SW','azerty'),
+	('s21','Retailleau','Pascal','32 boulevard Ayrault','23000','MONTLUCON','2009-05-09',NULL,'SW','azerty'),
+	('t43','Souron','Maryse','7B rue Gay Lussac','21000','DIJON','2003-09-03',NULL,'SW','azerty'),
+	('t47','Tiphagne','Patrick','7B rue Gay Lussac','62000','ARRAS','1997-08-29',NULL,'SW','azerty'),
+	('t55','Tréhet','Alain','7D chemin Barral','12000','RODEZ','1994-11-29',NULL,'SW','azerty'),
+	('t60','Tusseau','Josselin','63 rue Bon Repos','28000','CHARTRES','1991-03-29',NULL,'GY','azerty');
 
 
 CREATE TABLE Offrir (
@@ -601,7 +605,13 @@ CREATE TABLE Offrir (
 INSERT INTO Offrir VALUES
 	( 'a131' , 1 , 'EVILR7' , 2 ) ,
 	( 'a131' , 1 , 'PHYSOI8' , 5 ) ;
-
+	
+CREATE TABLE Modif (
+  mot_id varchar(10) NOT NULL DEFAULT '',
+  mot_libelle varchar(300) NOT NULL DEFAULT '',
+  mot_precision varchar(300) DEFAULT NULL,
+  PRIMARY KEY (mot_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE Constituer ADD CONSTRAINT FK_CONSTITUER_MEDICAMENT FOREIGN KEY (med_depotlegal) REFERENCES Medicament(med_depotlegal) ;
@@ -632,7 +642,8 @@ ALTER TABLE  Praticien ADD CONSTRAINT  FK_PRATICIEN_TYPE_PRATICIEN FOREIGN KEY(t
  
 ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_VISITEUR FOREIGN KEY(vis_matricule) REFERENCES Visiteur(vis_matricule) ;
 ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_PRATICIEN FOREIGN KEY(pra_num) REFERENCES Praticien(pra_num) ;
- 
+ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_MODIF FOREIGN KEY(mot_id) REFERENCES modif(mot_id) ;
+  
 ALTER TABLE Realiser ADD CONSTRAINT  FK_REALISER_ACTIVITE_COMPL FOREIGN KEY(ac_num) REFERENCES ActiviteCompl(ac_num) ;
 ALTER TABLE Realiser ADD CONSTRAINT  FK_REALISER_VISITEUR FOREIGN KEY(vis_matricule) REFERENCES Visiteur(vis_matricule) ;
 
@@ -643,18 +654,3 @@ ALTER TABLE Travailler ADD CONSTRAINT  FK_TRAVAILLER_REGION FOREIGN KEY(reg_code
 
 ALTER TABLE Visiteur ADD CONSTRAINT  FK_VISITEUR_SECTEUR FOREIGN KEY(sec_code) REFERENCES Secteur(sec_code) ;
 ALTER TABLE Visiteur ADD CONSTRAINT  FK_VISITEUR_LABORATOIRE FOREIGN KEY(lab_code) REFERENCES Laboratoire(lab_code) ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
