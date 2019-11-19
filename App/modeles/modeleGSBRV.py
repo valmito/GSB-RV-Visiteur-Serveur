@@ -3,6 +3,7 @@
 
 
 import mysql.connector
+from datetime import datetime
 
 
 connexionBD = None
@@ -197,16 +198,17 @@ def getMotifs() :
 		
 		enregistrements = curseur.fetchall()
 		
-		motifs = []
+		motif = []
 		for unEnregistrement in enregistrements :
 			unMotif = {}
 			unMotif[ 'mot_id' ] = unEnregistrement[ 0 ]
 			unMotif[ 'mot_libelle' ] = unEnregistrement[ 1 ]
 			unMotif[ 'mot_precision' ] = unEnregistrement[ 2 ]
-			motifs.append( unMotif )
+			motif.append( unMotif )
 			
 		curseur.close()
-		return motifs
+		return motif
+		
 	except :
 		return None
 	
@@ -236,8 +238,7 @@ def genererNumeroRapportVisite( matricule ) :
 	except :
 		return None
 
-def enregistrerRapportVisite( matricule , numPraticien , dateVisite , bilan ) :
-	
+def enregistrerRapportVisite( matricule , numPraticien , dateVisite , bilan , confiance, motif, date) :
 	numRapportVisite = genererNumeroRapportVisite( matricule )
 	if numRapportVisite != None :
 		
@@ -245,11 +246,11 @@ def enregistrerRapportVisite( matricule , numPraticien , dateVisite , bilan ) :
 			curseur = getConnexionBD().cursor()
 
 			requete = '''
-				insert into RapportVisite( vis_matricule , rap_num , rap_date_visite , rap_bilan , pra_num )
-				values( %s , %s , %s , %s , %s )
+				insert into RapportVisite( vis_matricule , rap_num , rap_date_visite , rap_bilan , pra_num , rap_coef_confiance, mot_id,rap_date_saisir )
+				values( %s , %s , %s , %s , %s , %s, %s, %s)
 				'''
 
-			curseur.execute( requete, ( matricule , numRapportVisite , dateVisite , bilan , numPraticien ) )
+			curseur.execute( requete, ( matricule , numRapportVisite , dateVisite , bilan , numPraticien , confiance , motif, date) )
 			connexionBD.commit()
 			curseur.close()
 
@@ -289,7 +290,7 @@ def enregistrerEchantillonsOfferts( matricule , numRapport , echantillons ) :
 		
 if __name__ == '__main__' :
 		print 'Authentification du visiteur a131 :'
-		print seConnecter( 'a131' , '' )
+		print seConnecter( 'a131' , 'azerty' )
 		print
 		
 		print 'Liste des rapports de visite du visiteur a131 :'

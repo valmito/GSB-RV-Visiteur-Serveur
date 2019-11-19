@@ -5,7 +5,7 @@ from flask import *
 import json
 
 from modeles import modeleGSBRV
-
+from datetime import datetime
 app = Flask( __name__ )
 
 
@@ -18,7 +18,7 @@ def seConnecter( matricule , mdp ) :
 		reponse.mimetype = 'application/json'
 		reponse.status_code = 200
 	else :
-		reponse = make_response( 'Veuillez recommencer je vous en prie' )
+		reponse = make_response( 'Veuillez recommencer Si le probleme persiste, contacter le développeur' )
 		reponse.mimetype = 'application/json'
 		reponse.status_code = 404
 	return reponse
@@ -99,11 +99,10 @@ def getMotifs() :
 	
 @app.route( '/rapports' , methods = [ 'POST' ] )
 def addRapportVisite() :
+	date = datetime.now().date()
+	
 	unRapport = json.loads( request.data )
-	numRapport = modeleGSBRV.enregistrerRapportVisite( 	unRapport[ 'matricule' ] , 
-																unRapport[ 'praticien' ] ,
-																unRapport[ 'visite' ] ,
-																unRapport[ 'bilan' ] )
+	numRapport = modeleGSBRV.enregistrerRapportVisite( 	unRapport[ 'matricule' ], unRapport[ 'praticien' ], unRapport[ 'visite' ], unRapport[ 'bilan' ], unRapport['confiance'], unRapport['motif'],date )
 	
 	reponse = make_response( '' )												
 	if numRapport != None :
